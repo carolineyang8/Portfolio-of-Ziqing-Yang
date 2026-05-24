@@ -415,7 +415,7 @@ img {
 }
 
 .contact-email {
-    font-family: var(--font-display);
+    font-family: var(--font-primary);
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     display: inline-block;
     margin-bottom: 3rem;
