@@ -1,0 +1,23 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#12122a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d0d1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8c47c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5ddb8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grad3)"/>
+  <circle cx="400" cy="300" r="120" fill="url(#accent3)" opacity="0.1"/>
+  <rect x="250" y="180" width="300" height="220" rx="20" fill="#ffffff" opacity="0.04"/>
+  <circle cx="400" cy="230" r="40" fill="url(#accent3)" opacity="0.3"/>
+  <rect x="280" y="300" width="240" height="40" rx="8" fill="#ffffff" opacity="0.06"/>
+  <rect x="280" y="360" width="160" height="20" rx="4" fill="url(#accent3)" opacity="0.2"/>
+  <circle cx="150" cy="400" r="50" fill="url(#accent3)" opacity="0.08"/>
+  <circle cx="650" cy="200" r="60" fill="url(#accent3)" opacity="0.06"/>
+  <line x1="100" y1="100" x2="200" y2="150" stroke="url(#accent3)" stroke-width="1" opacity="0.2"/>
+  <line x1="600" y1="450" x2="700" y2="500" stroke="url(#accent3)" stroke-width="1" opacity="0.2"/>
+  <text x="400" y="550" font-family="Inter, sans-serif" font-size="14" fill="#888888" text-anchor="middle">Health &amp; Wellness App</text>
+</svg>
