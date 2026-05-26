@@ -1,10 +1,14 @@
 :root {
-    --color-bg: #0a0a0a;
-    --color-bg-secondary: #111111;
-    --color-text: #ffffff;
-    --color-text-secondary: #888888;
-    --color-accent: #e8c47c;
-    --color-accent-light: #f5ddb8;
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f8f8f8;
+    --color-bg-card: #f0f0f0;
+    --color-text: #1a1a1a;
+    --color-text-secondary: #666666;
+    --color-accent: #d4a84b;
+    --color-accent-light: #e8c47c;
+    --color-tag-bg: #FCFAF3;
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-overlay: rgba(255, 255, 255, 0.85);
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-display: 'Playfair Display', Georgia, serif;
     --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -27,6 +31,7 @@ body {
     color: var(--color-text);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.4s var(--transition-smooth), color 0.4s var(--transition-smooth);
 }
 
 ::selection {
@@ -52,14 +57,15 @@ img {
     right: 0;
     z-index: 1000;
     padding: 1.5rem 4rem;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), transparent);
+    background: linear-gradient(to bottom, var(--color-bg), transparent);
     transition: all 0.4s var(--transition-smooth);
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 10, 0.98);
+    background: var(--color-bg);
     backdrop-filter: blur(10px);
     padding: 1rem 4rem;
+    box-shadow: 0 1px 0 var(--color-border);
 }
 
 .nav {
@@ -86,6 +92,7 @@ img {
     display: flex;
     list-style: none;
     gap: 3rem;
+    align-items: center;
 }
 
 .nav-links a {
@@ -131,6 +138,35 @@ img {
     width: 100%;
 }
 
+.hero-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-image {
+    flex: 0 0 auto;
+    max-width: 520px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s var(--transition-smooth) 0.5s forwards;
+}
+
+.hero-image img {
+    width: 100%;
+    max-height: 400px;
+    height: auto;
+    object-fit: contain;
+}
+
 .hero-subtitle {
     display: inline-block;
     font-size: 0.75rem;
@@ -150,7 +186,7 @@ img {
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s var(--transition-smooth) 0.4s forwards;
@@ -226,6 +262,11 @@ img {
     gap: 1.5rem;
 }
 
+.section-header-about,
+.section-header-contact {
+    padding-left: 0;
+}
+
 .section-number {
     font-family: var(--font-display);
     font-size: 0.875rem;
@@ -253,7 +294,6 @@ img {
 }
 
 .project-card {
-    cursor: pointer;
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.6s var(--transition-smooth),
@@ -271,6 +311,7 @@ img {
     overflow: hidden;
     background-color: var(--color-bg-secondary);
     margin-bottom: 1.5rem;
+    cursor: pointer;
 }
 
 .project-image img {
@@ -280,14 +321,14 @@ img {
     transition: transform 0.6s var(--transition-smooth);
 }
 
-.project-card:hover .project-image img {
+.project-image:hover img {
     transform: scale(1.05);
 }
 
 .project-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, 0.7);
+    background: rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,7 +336,7 @@ img {
     transition: opacity 0.4s var(--transition-smooth);
 }
 
-.project-card:hover .project-overlay {
+.project-image:hover .project-overlay {
     opacity: 1;
 }
 
@@ -307,10 +348,11 @@ img {
     color: var(--color-text);
     padding: 0.75rem 1.5rem;
     border: 1px solid var(--color-text);
+    background-color: rgba(0, 0, 0, 0.4);
     transition: all 0.3s var(--transition-smooth);
 }
 
-.project-card:hover .view-project {
+.project-image:hover .view-project {
     background-color: var(--color-text);
     color: var(--color-bg);
 }
@@ -321,10 +363,11 @@ img {
 
 .project-title {
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 1.25rem;
+    font-weight: 500;
     margin-bottom: 0.75rem;
     letter-spacing: -0.01em;
+    line-height: 1.4;
 }
 
 .project-description {
@@ -332,6 +375,27 @@ img {
     color: var(--color-text-secondary);
     line-height: 1.7;
     margin-bottom: 1rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    background-color: var(--color-tag-bg);
+    border-radius: 4px;
+    color: #5a4a1a;
+    transition: all 0.3s var(--transition-smooth);
+}
+
+[data-theme="dark"] .project-tag {
+    color: #1a1a1a;
 }
 
 .project-category {
@@ -345,6 +409,7 @@ img {
 .about-section {
     padding: 8rem 4rem;
     background-color: var(--color-bg-secondary);
+    transition: background-color 0.4s var(--transition-smooth);
 }
 
 .about-content {
@@ -376,7 +441,7 @@ img {
     gap: 4rem;
     margin-top: 3rem;
     padding-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--color-border);
 }
 
 .detail-item {
@@ -438,7 +503,7 @@ img {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.75rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--color-border);
     transition: all 0.3s var(--transition-smooth);
 }
 
@@ -450,7 +515,7 @@ img {
 .footer {
     padding: 2rem 4rem;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--color-border);
 }
 
 .footer p {
@@ -482,8 +547,30 @@ img {
         font-size: 0.75rem;
     }
 
+    .theme-toggle {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .theme-toggle .theme-label {
+        display: none;
+    }
+
     .hero {
         padding: 6rem 1.5rem 3rem;
+    }
+
+    .hero-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-image {
+        max-width: 400px;
     }
 
     .section-header {
@@ -524,7 +611,7 @@ img {
 }
 
 @media (max-width: 480px) {
-    .nav-links {
+    .nav-links a {
         display: none;
     }
 

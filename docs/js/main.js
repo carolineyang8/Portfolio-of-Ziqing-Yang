@@ -5,13 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
         '2': 'https://drive.google.com/drive/folders/PROJECT2_ID',
         '3': 'https://drive.google.com/drive/folders/PROJECT3_ID',
         '4': 'https://drive.google.com/drive/folders/PROJECT4_ID',
-        '5': 'https://drive.google.com/drive/folders/PROJECT5_ID',
-        '6': 'https://drive.google.com/drive/folders/PROJECT6_ID'
+        '5': 'https://drive.google.com/drive/folders/PROJECT5_ID'
     };
 
     // Header scroll effect
     const header = document.querySelector('.header');
-    let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', function() {
         const currentScrollY = window.scrollY;
@@ -21,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             header.classList.remove('scrolled');
         }
-
-        lastScrollY = currentScrollY;
     }, { passive: true });
 
     // Intersection Observer for scroll animations
@@ -33,12 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry, index) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                const delay = Array.from(entry.target.parentElement.children).indexOf(entry.target) % 2 * 150;
+                const cards = Array.from(entry.target.parentElement.children);
+                const index = cards.indexOf(entry.target);
+                const delay = index % 2 * 150;
+
                 setTimeout(function() {
                     entry.target.classList.add('visible');
                 }, delay);
+
                 observer.unobserve(entry.target);
             }
         });
@@ -50,10 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
 
-    // Project card click handler
-    projectCards.forEach(function(card) {
-        card.addEventListener('click', function() {
-            const projectId = this.getAttribute('data-project');
+    // Project image click handler (only on image, not on text)
+    const projectImages = document.querySelectorAll('.project-image');
+    projectImages.forEach(function(image) {
+        image.addEventListener('click', function() {
+            const card = this.closest('.project-card');
+            const projectId = card.getAttribute('data-project');
             const link = projectLinks[projectId];
 
             if (link) {
@@ -62,11 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Keyboard accessibility
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', 'View project details');
+        image.setAttribute('tabindex', '0');
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'View project details');
 
-        card.addEventListener('keydown', function(e) {
+        image.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 this.click();
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                const headerOffset = 80;
+                const headerOffset = 60;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -116,14 +118,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const moveX = (x - centerX) / centerX * 5;
-            const moveY = (y - centerY) / centerY * 5;
+            const moveX = (x - centerX) / centerX * 3;
+            const moveY = (y - centerY) / centerY * 3;
 
-            card.style.transform = 'translateY(0) translate(' + moveX + 'px, ' + moveY + 'px)';
+            card.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
         });
 
         card.addEventListener('mouseleave', function() {
-            card.style.transform = 'translateY(0)';
+            card.style.transform = '';
         });
     });
 });
