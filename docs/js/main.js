@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Project Google Drive links
     const projectLinks = {
-        '1': 'https://drive.google.com/drive/folders/PROJECT1_ID',
-        '2': 'https://drive.google.com/drive/folders/PROJECT2_ID',
-        '3': 'https://drive.google.com/drive/folders/PROJECT3_ID',
-        '4': 'https://drive.google.com/drive/folders/PROJECT4_ID',
-        '5': 'https://drive.google.com/drive/folders/PROJECT5_ID'
+        '1': 'https://drive.google.com/file/d/1pGCjPjtwzc0N9VjhH2k6LlrdeGzwFpCB/view?usp=drive_link',
+        '2': 'https://drive.google.com/file/d/1VX_ouAiKsNydkdpOpg6TYuYGiSSXLBaG/view?usp=drive_link',
+        '3': 'https://drive.google.com/file/d/1mJozZTPvXV0aQ068wi6-DrdS9jjyrsLG/view?usp=drive_link',
+        '4': 'https://drive.google.com/file/d/1JH4fE8ArUvRqRKNq3GK6X7WcS1MciOJQ/view?usp=drive_link',
+        '5': 'https://drive.google.com/file/d/1YlkYr56sN7XDcQ597vX5CQDdq9_9LGCm/view?usp=drive_link'
     };
 
     // Header scroll effect
@@ -126,6 +126,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.addEventListener('mouseleave', function() {
             card.style.transform = '';
+        });
+    });
+
+    // Copy to clipboard functionality
+    const contactItems = document.querySelectorAll('.contact-item');
+    contactItems.forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const textToCopy = this.getAttribute('data-copy');
+            const feedback = this.querySelector('.copy-feedback');
+
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                feedback.classList.add('show');
+                setTimeout(function() {
+                    feedback.classList.remove('show');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy: ', err);
+            });
         });
     });
 });

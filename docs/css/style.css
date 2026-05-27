@@ -50,6 +50,29 @@ img {
     display: block;
 }
 
+/* Prevent layout shift while images load */
+img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+}
+
+/* Smooth image loading */
+.project-image img {
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-card) 100%);
+}
+
+/* Picture element styling */
+picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -479,16 +502,87 @@ img {
     margin-bottom: 2rem;
 }
 
+.contact-item {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.contact-item:last-of-type {
+    margin-bottom: 3rem;
+}
+
 .contact-email {
     font-family: 'JetBrains Mono', monospace;
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    display: inline-block;
-    margin-bottom: 3rem;
-    transition: color 0.3s var(--transition-smooth);
+    display: block;
+    transition: color 0.3s var(--transition-smooth), transform 0.2s var(--transition-smooth);
 }
 
-.contact-email:hover {
+.contact-phone {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    display: block;
+    transition: color 0.3s var(--transition-smooth), transform 0.2s var(--transition-smooth);
+    color: var(--color-text);
+}
+
+.contact-item:hover .contact-email,
+.contact-item:hover .contact-phone {
     color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.copy-hint {
+    position: absolute;
+    top: 50%;
+    right: -80px;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    opacity: 0;
+    transition: opacity 0.3s var(--transition-smooth);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.contact-item:hover .copy-hint {
+    opacity: 1;
+}
+
+.copy-feedback {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-bg);
+    background-color: var(--color-accent);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--transition-smooth), top 0.3s var(--transition-smooth);
+}
+
+.copy-feedback.show {
+    opacity: 1;
+    top: -40px;
+}
+
+.copy-feedback::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--color-accent);
 }
 
 .social-links {

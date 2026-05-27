@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ziqing Yang | UI/UX Designer Portfolio</title>
     <meta name="description" content="UI/UX Designer Portfolio - Creating meaningful digital experiences through thoughtful design">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload critical above-the-fold images with high priority (WebP format) -->
+    <link rel="preload" href="images/cover.webp" as="image" fetchpriority="high" type="image/webp">
+    <link rel="preload" href="images/project-1.webp" as="image" fetchpriority="high" type="image/webp">
+
+    <!-- Prefetch below-the-fold images for faster subsequent navigation -->
+    <link rel="prefetch" href="images/project-2.webp" as="image" type="image/webp">
+    <link rel="prefetch" href="images/project-3.webp" as="image" type="image/webp">
+    <link rel="prefetch" href="images/project-4.webp" as="image" type="image/webp">
+    <link rel="prefetch" href="images/project-5.webp" as="image" type="image/webp">
+
+    <!-- DNS prefetch for fonts -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,7 +52,10 @@
                         </p>
                     </div>
                     <div class="hero-image">
-                        <img src="images/cover.png" alt="Portfolio Cover" loading="eager">
+                        <picture>
+                            <source srcset="images/cover.webp" type="image/webp">
+                            <img src="images/cover.png" alt="Portfolio Cover" loading="eager" width="680" height="500" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -54,7 +74,10 @@
             <div class="projects-grid">
                 <article class="project-card" data-project="1">
                     <div class="project-image">
-                        <img src="images/project-1.jpg" alt="Glasgow Housing Crisis Service System" loading="lazy">
+                        <picture>
+                            <source srcset="images/project-1.webp" type="image/webp">
+                            <img src="images/project-1.jpg" alt="Glasgow Housing Crisis Service System" loading="lazy" width="800" height="600" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <span class="view-project">View Project</span>
                         </div>
@@ -73,7 +96,10 @@
 
                 <article class="project-card" data-project="2">
                     <div class="project-image">
-                        <img src="images/project-2.jpg" alt="Imperfect Fruit Collection and Sale Service System" loading="lazy">
+                        <picture>
+                            <source srcset="images/project-2.webp" type="image/webp">
+                            <img src="images/project-2.jpg" alt="Imperfect Fruit Collection and Sale Service System" loading="lazy" width="800" height="600" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <span class="view-project">View Project</span>
                         </div>
@@ -95,7 +121,10 @@
 
                 <article class="project-card" data-project="3">
                     <div class="project-image">
-                        <img src="images/project-3.jpg" alt="Glasgow Mackintosh Tea Room" loading="lazy">
+                        <picture>
+                            <source srcset="images/project-3.webp" type="image/webp">
+                            <img src="images/project-3.jpg" alt="Glasgow Mackintosh Tea Room" loading="lazy" width="800" height="600" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <span class="view-project">View Project</span>
                         </div>
@@ -112,7 +141,10 @@
 
                 <article class="project-card" data-project="4">
                     <div class="project-image">
-                        <img src="images/project-4.jpg" alt="Human-Plant Symbiosis Service" loading="lazy">
+                        <picture>
+                            <source srcset="images/project-4.webp" type="image/webp">
+                            <img src="images/project-4.jpg" alt="Human-Plant Symbiosis Service" loading="lazy" width="800" height="600" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <span class="view-project">View Project</span>
                         </div>
@@ -132,7 +164,10 @@
 
                 <article class="project-card" data-project="5">
                     <div class="project-image">
-                        <img src="images/project-5.jpg" alt="Bee Conservation Game" loading="lazy">
+                        <picture>
+                            <source srcset="images/project-5.webp" type="image/webp">
+                            <img src="images/project-5.jpg" alt="Bee Conservation Game" loading="lazy" width="800" height="600" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <span class="view-project">View Project</span>
                         </div>
@@ -193,7 +228,16 @@
                 <p class="contact-text">
                     Interested in working together? I'd love to hear from you.
                 </p>
-                <a href="mailto:carolineyang00@gmail.com" class="contact-email">carolineyang00@gmail.com</a>
+                <div class="contact-item" data-copy="carolineyang00@gmail.com">
+                    <a href="mailto:carolineyang00@gmail.com" class="contact-email">carolineyang00@gmail.com</a>
+                    <span class="copy-hint">Click to copy</span>
+                    <span class="copy-feedback">Copied!</span>
+                </div>
+                <div class="contact-item" data-copy="+447796758003">
+                    <a href="tel:+447796758003" class="contact-phone">+44 7796 758003</a>
+                    <span class="copy-hint">Click to copy</span>
+                    <span class="copy-feedback">Copied!</span>
+                </div>
                 <!-- Social links hidden -->
                 <!--
                 <div class="social-links">
