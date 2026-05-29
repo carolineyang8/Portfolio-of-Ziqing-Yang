@@ -148,18 +148,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Skeleton loading - add loaded class when images load
+    // Skeleton loading - add loaded class to parent when images load
     const images = document.querySelectorAll('img');
     images.forEach(function(img) {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
-            img.addEventListener('error', function() {
-                this.classList.add('loaded');
-            });
+        const parent = img.closest('.project-image, .hero-image');
+        if (parent) {
+            parent.classList.add('img-skeleton');
+            img.setAttribute('data-loading', 'true');
+
+            function onImageLoad() {
+                parent.classList.add('loaded');
+                img.removeAttribute('data-loading');
+            }
+
+            if (img.complete) {
+                onImageLoad();
+            } else {
+                img.addEventListener('load', onImageLoad);
+                img.addEventListener('error', onImageLoad);
+            }
         }
     });
 });
