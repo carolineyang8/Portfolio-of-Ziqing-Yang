@@ -148,23 +148,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Skeleton loading - only for project images, not hero image
-    const projectImages = document.querySelectorAll('.project-image img');
-    projectImages.forEach(function(img) {
-        const parent = img.closest('.project-image');
-        if (parent) {
-            parent.classList.add('skeleton');
-
-            function onImageLoad() {
-                parent.classList.add('loaded');
-            }
-
-            if (img.complete) {
-                onImageLoad();
-            } else {
-                img.addEventListener('load', onImageLoad);
-                img.addEventListener('error', onImageLoad);
-            }
-        }
-    });
 });
