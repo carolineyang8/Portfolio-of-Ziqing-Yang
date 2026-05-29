@@ -147,4 +147,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    // Skeleton loading - add loaded class when images load
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+            img.addEventListener('error', function() {
+                this.classList.add('loaded');
+            });
+        }
+    });
 });
