@@ -153,12 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
     images.forEach(function(img) {
         const parent = img.closest('.project-image, .hero-image');
         if (parent) {
-            parent.classList.add('img-skeleton');
-            img.setAttribute('data-loading', 'true');
+            parent.classList.add('skeleton');
 
             function onImageLoad() {
                 parent.classList.add('loaded');
-                img.removeAttribute('data-loading');
             }
 
             if (img.complete) {
