@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Project Google Drive links
     const projectLinks = {
-        '1': 'https://drive.google.com/file/d/1pGCjPjtwzc0N9VjhH2k6LlrdeGzwFpCB/view?usp=drive_link',
-        '2': 'https://drive.google.com/file/d/1VX_ouAiKsNydkdpOpg6TYuYGiSSXLBaG/view?usp=drive_link',
-        '3': 'https://drive.google.com/file/d/1mJozZTPvXV0aQ068wi6-DrdS9jjyrsLG/view?usp=drive_link',
-        '4': 'https://drive.google.com/file/d/1JH4fE8ArUvRqRKNq3GK6X7WcS1MciOJQ/view?usp=drive_link',
-        '5': 'https://drive.google.com/file/d/1YlkYr56sN7XDcQ597vX5CQDdq9_9LGCm/view?usp=drive_link'
+        '1': 'https://drive.google.com/file/d/1ZT4WN36-3IP6KLdtdbyeklm2NAhQZ7rL/view?usp=drive_link',
+        '2': 'https://drive.google.com/file/d/11W-JkrkJFmNA0bUnsQhkgbifN1S5Ylq4/view?usp=drive_link',
+        '3': 'https://drive.google.com/file/d/13DYGdQqDbtbRk3vF7FmPmfVo-ZDa8hpU/view?usp=drive_link',
+        '4': 'https://drive.google.com/file/d/1IzfOK6P4k7tFnb_SAsrMO4KpO5_i-gOd/view?usp=drive_link',
+        '5': 'https://drive.google.com/file/d/1SlnOeB4ISJ0Qx9FO7dbAJ5n5z9uG50e0/view?usp=drive_link'
     };
 
     // Header scroll effect
