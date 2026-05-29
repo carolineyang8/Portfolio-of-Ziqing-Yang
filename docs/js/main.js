@@ -148,10 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Skeleton loading - add loaded class to parent when images load
-    const images = document.querySelectorAll('img');
-    images.forEach(function(img) {
-        const parent = img.closest('.project-image, .hero-image');
+    // Skeleton loading - only for project images, not hero image
+    const projectImages = document.querySelectorAll('.project-image img');
+    projectImages.forEach(function(img) {
+        const parent = img.closest('.project-image');
         if (parent) {
             parent.classList.add('skeleton');
 

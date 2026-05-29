@@ -125,33 +125,8 @@ img[width][height] {
     opacity: 1;
 }
 
-/* Skeleton for hero image (vertical portrait) */
-.hero-image {
-    position: relative;
-    background: linear-gradient(
-        90deg,
-        var(--color-bg-secondary) 0%,
-        var(--color-bg-card) 50%,
-        var(--color-bg-secondary) 100%
-    );
-    background-size: 200% 100%;
-}
-
-.hero-image.skeleton {
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-}
-
-.hero-image.loaded {
-    animation: none;
-    background: none;
-}
-
+/* Hero image - no skeleton, direct display */
 .hero-image img {
-    opacity: 0;
-    transition: opacity 0.5s var(--transition-smooth);
-}
-
-.hero-image.loaded img {
     opacity: 1;
 }
 
