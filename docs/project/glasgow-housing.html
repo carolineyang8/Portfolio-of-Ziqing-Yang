@@ -265,6 +265,10 @@
             opacity: 1;
         }
 
+        .markdown-content img.img-medium {
+            max-width: 78%;
+        }
+
         /* Image row layout */
         .image-row {
             display: flex;
@@ -312,15 +316,16 @@
         /* Side by side images */
         .image-row-side {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
             margin: 2rem 0;
             width: 100%;
+            align-items: center;
         }
 
         .image-row-side img {
             width: 100%;
-            height: auto;
+            height: 320px;
             margin: 0;
             object-fit: contain;
         }
@@ -396,6 +401,18 @@
             .project-info {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            .markdown-content img.img-medium {
+                max-width: 100%;
+            }
+
+            .image-row-side {
+                grid-template-columns: 1fr;
+            }
+
+            .image-row-side img {
+                height: auto;
             }
         }
     </style>
@@ -502,7 +519,7 @@
 <h2>The Resulting Issues</h2>
 <img src="./images/glasgow-housing/image30.webp" alt="" loading="lazy">
 <h1>Flowchart</h1>
-<img src="./images/glasgow-housing/image29.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image29.webp" alt="" loading="lazy" class="img-medium">
 <h1>In-depth analysis</h1>
 <p>Further research examined the rise of short-term rentals—why more landlords are shifting into the short-let market, and the extent to which this impacts long-term housing supply.</p>
 <p>Why?</p>
