@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design of the Glasgow Housing Crisis Service System | Ziqing Yang</title>
+    <meta name="description" content="Service design for Glasgow Housing Crisis - encouraging landlords to convert unused properties into social housing">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f8f8f8;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #2c5282;
+            --color-accent-light: #4a7ab8;
+            --color-tag-bg: #e8f0f8;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 4rem;
+            box-shadow: 0 1px 0 var(--color-border);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: opacity 0.3s var(--transition-smooth);
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .nav-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 400;
+            white-space: normal;
+            line-height: 1.4;
+            text-align: center;
+            flex: 1;
+            padding: 0 2rem;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+        }
+
+        /* Content */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+            background: var(--color-bg);
+        }
+
+        .project-meta {
+            margin-bottom: 2rem;
+        }
+
+        .project-category {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.35rem 0.75rem;
+            background-color: var(--color-tag-bg);
+            border-radius: 4px;
+            color: #1a365d;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+
+        /* Markdown Content Styles */
+        .markdown-content h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .markdown-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .markdown-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+
+        .markdown-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .markdown-content ol li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            list-style-type: decimal;
+        }
+
+        .markdown-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .markdown-content ol li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            list-style-type: decimal;
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: block;
+            background-color: var(--color-bg-secondary);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            object-fit: contain;
+        }
+
+        .markdown-content img.loaded {
+            opacity: 1;
+        }
+
+        /* Image row layout */
+        .image-row {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            align-items: stretch;
+            height: 280px;
+            max-height: 35vh;
+        }
+
+        .image-row img {
+            flex: 1;
+            width: auto;
+            height: 100%;
+            max-width: 50%;
+            margin: 0;
+            object-fit: contain;
+        }
+
+        /* Mixed image row - for different sized images */
+        .image-row-mixed {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem auto;
+            height: 280px;
+            align-items: stretch;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .image-row-mixed .img-large {
+            flex: 0 0 auto;
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .image-row-mixed .img-small {
+            flex: 0 0 auto;
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Side by side images */
+        .image-row-side {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .image-row-side img {
+            width: 100%;
+            height: auto;
+            margin: 0;
+            object-fit: contain;
+        }
+
+        /* Skeleton loading - simple gray background */
+        .markdown-content img:not(.loaded) {
+            background-color: #f5f5f5;
+        }
+
+        /* Question headings - emphasized text */
+        .question-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .markdown-content strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s var(--transition-smooth);
+        }
+
+        .footer a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-title {
+                display: none;
+            }
+
+            .hero-image {
+                height: 40vh;
+            }
+
+            .content-wrapper {
+                padding: 2rem 1.5rem;
+                margin-top: -40px;
+            }
+
+            .markdown-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .markdown-content h2 {
+                font-size: 1.25rem;
+            }
+
+            .project-info {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="back-link">← Back</a>
+            <span class="nav-title">Design of the Glasgow Housing Crisis Service System</span>
+            <div style="width: 60px;"></div>
+        </nav>
+    </header>
+
+    <div class="hero-image">
+        <img src="../images/project-1.webp" alt="Glasgow Housing Crisis Project Cover">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <article class="content-wrapper">
+        <div class="project-meta fade-in">
+            <span class="project-category">Service and UI/UX Design</span>
+            <h1 class="project-title">Design of the Glasgow Housing Crisis Service System</h1>
+            <div class="project-tags">
+                <span class="project-tag">App Design</span>
+                <span class="project-tag">Responsive Design</span>
+                <span class="project-tag">Website Design</span>
+            </div>
+
+            <div class="project-info">
+                <div class="info-item">
+                    <span class="info-label">Services</span>
+                    <span class="info-value">Service Design, UI/UX Design, Responsive Design</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Duration</span>
+                    <span class="info-value">3 months</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Industry</span>
+                    <span class="info-value">Society, Public Sector</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Role</span>
+                    <span class="info-value">Service Designer</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Type</span>
+                    <span class="info-value">Team Project</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="markdown-content fade-in">
+<h1>Challenge and Output</h1>
+<img src="./images/glasgow-housing/image5.webp" alt="" loading="lazy">
+<p>In November 2023, A Housing Emergency Action Plan has been published in response to the unprecedented challenges facing Glasgow's homelessness services. Currently, Glasgow City Council does not have the resources to help everyone at the moment because the demand for housing is much greater than the housing supply.</p>
+<p>This project involves 5 team members. Due to the numerous stakeholders involved in Glasgow's housing issue and the political, economic, social, and cultural factors behind it, we decided to focus on solving the main direct problem of insufficient housing supply—the housing source issue. Starting from landlords' willingness to sell and combining with housing associations' management of properties, we designed a mobile App and desktop website with responsive design for different ports. This helps increase the long-term rental market, allowing housing associations to better allocate housing to homeless people.</p>
+<h2>Research</h2>
+<img src="./images/glasgow-housing/image4.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image3.webp" alt="" loading="lazy">
+<p class="question-heading">What service mechanisms are currently in place to address urgent housing issues? Are there any shortcomings?</p>
+<p>Housing first: Health issues, psychological recovery, employment, and maintaining social relationships</p>
+<p class="question-heading">But what are the bottlenecks in implementing Housing First?</p>
+<ol>
+<li>There are not enough properties available</li>
+<li>The use of temporary accommodation (hotels/B&Bs) is on the rise, and families are staying for longer periods</li>
+<li>Insufficient funding, a shortage of support staff, and difficulties in coordinating across departments</li>
+<li>Complex system coordination: The Council is not the actual landlord</li>
+</ol>
+<p>Housing First has limited applicability and is not a universal solution. It typically prioritises long-term rough sleepers and individuals with complex needs, rather than all homelessness cases. So in Glasgow, rising family homelessness and increasing asylum-related demand mean Housing First cannot meet the full pressure.</p>
+<p class="question-heading">Further Questions Raised：</p>
+<ol>
+<li>Given the significant gap between housing supply and demand, how can needs be met?</li>
+<li>What are the key issues in the current system, what areas require improvement, and how can these be addressed?</li>
+</ol>
+<h2>Application process for homeless - User Journey Map</h2>
+<img src="./images/glasgow-housing/image2.webp" alt="" loading="lazy">
+<p>From this tenant application process, we can see that there are extremely cumbersome processes and long waiting times in the initial application process and temporary accommodation, as well as insufficient human resources. There are also communication difficulties between tenants and housing associations in the later stages of housing association registration.</p>
+<h1>Problem-solving flowchart</h1>
+<img src="./images/glasgow-housing/image1.webp" alt="" loading="lazy">
+<p class="question-heading">However, this policy is not being effectively implemented：</p>
+<ol>
+<li>Scottish data shows that in practice, temporary accommodation is often not provided when required (breaches of duty), and many households refuse Council offers.</li>
+</ol>
+<p class="question-heading">This reflects two realities:</p>
+<ol>
+<li>Councils are responsible for attempting to provide accommodation.</li>
+<li>However, in many cases, this obligation is not actually met.</li>
+<li>In addition, the accommodation offered is often not suitable.</li>
+</ol>
+<p class="question-heading">Reason:</p>
+<p>The government is spending heavily on short-term solutions without addressing the root causes, with much of the funding going into temporary accommodation, while waiting times for long-term housing remain very long.</p>
+<ol>
+<li>There were 18,092 households in temporary accommodation (September 2025), a 9% increase compared to 2024, and this was reported as the highest level in the time series.</li>
+</ol>
+<p class="question-heading">The system is still accumulating cases rather than resolving them. The same report shows:</p>
+<ol>
+<li>23,572 households entered temporary accommodation</li>
+<li>22,654 households exited. Net increase (backlog): +918</li>
+<li>Length of stay remains high with no improvement:
+<br>Average duration in temporary accommodation: 237 days (around 8 months)</li>
+<li>Long-term trend: continued deterioration (not a one-off). In 2025, households in temporary accommodation rose from 17,240 (March) to 18,092 (September), reaching the highest number on record.</li>
+</ol>
+<h2>The Resulting Issues</h2>
+<img src="./images/glasgow-housing/image30.webp" alt="" loading="lazy">
+<h1>Flowchart</h1>
+<img src="./images/glasgow-housing/image29.webp" alt="" loading="lazy">
+<h1>In-depth analysis</h1>
+<p>Further research examined the rise of short-term rentals—why more landlords are shifting into the short-let market, and the extent to which this impacts long-term housing supply.</p>
+<p>Why?</p>
+<p>The supply of social housing has long lagged behind growing demand, placing sustained pressure on the long-term housing market. In this context, landlords' decisions are shaped by two opposing forces:</p>
+<p>Pull factor: Why short-term rentals are more attractive. Short-term rentals offer higher returns than long-term leases, with flexible pricing and easier exit. An ageing landlord population also prefers lower-risk, lower-management options.</p>
+<p>Push factor: Why long-term/social housing is less attractive to landlords. High repair standards for vacant properties (58% of private homes fail SHQS), with costly and time-consuming upgrades; lower returns than the market rate and concerns about housing higher-risk tenants; and a tightening policy environment (rent controls and increased regulation), leading to over 50,000 properties exiting the private rental sector in 2023–2024.</p>
+<p>These two forces together drive landlords toward the short-term rental market.</p>
+<h2>Problem Framing</h2>
+<img src="./images/glasgow-housing/image28.webp" alt="" loading="lazy">
+<h2>Concept Development</h2>
+<img src="./images/glasgow-housing/image27.webp" alt="" loading="lazy">
+<p>Exploration of policy improvement directions + before-and-after comparison.</p>
+<img src="./images/glasgow-housing/image26.webp" alt="" loading="lazy">
+<h2>User Journey Map</h2>
+<img src="./images/glasgow-housing/image25.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image24.webp" alt="" loading="lazy">
+<h2>The Whole System Map</h2>
+<p>This system diagram is divided into five layers: the core user layer, the market and intermediary layer, and the policy and management layer. The remaining two layers are the social demand layer and the support layer. The flows of all funds, housing stock and services are illustrated using three colours: blue, green and red.</p>
+<img src="./images/glasgow-housing/image23.webp" alt="" loading="lazy">
+<h2>Concept Development</h2>
+<p>Initial understanding of the system: architecture diagram and relationship analysis diagram.</p>
+<img src="./images/glasgow-housing/image22.webp" alt="" loading="lazy">
+<p>This app is a support system designed for landlords to simplify the rental process. It first evaluates property condition and rental potential, helping users understand value and risks. It then provides an earnings simulator to estimate income and compare different scenarios. To reduce financial barriers, the system offers a repair-first, pay-later model, allowing properties to be prepared without upfront costs. Finally, it connects landlords with maintenance and inspection services for ongoing support. Together, these features create a more predictable, guided, and low-risk rental experience.</p>
+<h2>Information Architecture Diagram</h2>
+<img src="./images/glasgow-housing/image21.webp" alt="" loading="lazy">
+<h2>Lo-fi Design</h2>
+<img src="./images/glasgow-housing/image20.webp" alt="" loading="lazy">
+<h2>Hi-fi Design</h2>
+<img src="./images/glasgow-housing/image19.webp" alt="" loading="lazy">
+<h2>Multi-platform Responsive Design</h2>
+<div class="image-row-side">
+<img src="./images/glasgow-housing/image18.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image15.webp" alt="" loading="lazy">
+</div>
+<img src="./images/glasgow-housing/image17.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image16.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image14.webp" alt="" loading="lazy">
+<h2>Test</h2>
+<p>The testing is divided into two main parts. The first part involves system testing, with the housing association acting as the primary tester. As they are not 'ordinary users' but 'key stakeholders' within the system, the testing focuses on whether the housing association is willing to engage with the system, whether the system is operational for them, and whether the costs, risks and processes are acceptable.</p>
+<p>The second part involves testing with the system's primary users, the landlords. We need to understand which aspects they prefer or find most effective as they navigate the system step by step, and which processes they find difficult to understand. We will also need to provide the app to the landlords for them to test the usage process.</p>
+<div class="image-row">
+<img src="./images/glasgow-housing/image13.webp" alt="" loading="lazy">
+<img src="./images/glasgow-housing/image12.webp" alt="" loading="lazy">
+</div>
+<div class="image-row image-row-mixed">
+<img src="./images/glasgow-housing/image11.webp" alt="" loading="lazy" class="img-large">
+<img src="./images/glasgow-housing/image10.webp" alt="" loading="lazy" class="img-small">
+</div>
+<img src="./images/glasgow-housing/image9.webp" alt="" loading="lazy">
+<h2>System Patch</h2>
+<img src="./images/glasgow-housing/image8.webp" alt="" loading="lazy">
+<h2>Storyboard</h2>
+<img src="./images/glasgow-housing/image7.webp" alt="" loading="lazy">
+        </div>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html">← Back to Home</a>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 0 var(--color-border)';
+            }
+        }, { passive: true });
+
+        // Progressive image loading with IntersectionObserver
+        const images = document.querySelectorAll('.markdown-content img');
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const preloadImg = new Image();
+                    preloadImg.src = img.src;
+                    preloadImg.onload = function() {
+                        img.classList.add('loaded');
+                    };
+                    if (preloadImg.complete) {
+                        img.classList.add('loaded');
+                    }
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '100px 0px',
+            threshold: 0.1
+        });
+
+        images.forEach(img => {
+            if (!img.closest('.hero-image')) {
+                imageObserver.observe(img);
+            }
+        });
+    </script>
+</body>
+</html>

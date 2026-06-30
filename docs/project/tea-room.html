@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glasgow Mackintosh Tea Room – Tea Culture Promotion Design Project | Ziqing Yang</title>
+    <meta name="description" content="Tea culture promotion design project centred on Ritual & Delivery · Health & Wellbeing">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f8f8f8;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #2c5282;
+            --color-accent-light: #4a7ab8;
+            --color-tag-bg: #e8f0f8;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 4rem;
+            box-shadow: 0 1px 0 var(--color-border);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: opacity 0.3s var(--transition-smooth);
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .nav-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 400;
+            white-space: normal;
+            line-height: 1.4;
+            text-align: center;
+            flex: 1;
+            padding: 0 2rem;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+        }
+
+        /* Content */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+            background: var(--color-bg);
+        }
+
+        .project-meta {
+            margin-bottom: 2rem;
+        }
+
+        .project-category {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.35rem 0.75rem;
+            background-color: var(--color-tag-bg);
+            border-radius: 4px;
+            color: #1a365d;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+
+        /* Markdown Content Styles */
+        .markdown-content h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .markdown-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .markdown-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: block;
+            background-color: var(--color-bg-secondary);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            object-fit: contain;
+        }
+
+        .markdown-content img.loaded {
+            opacity: 1;
+        }
+
+        /* Skeleton loading - simple gray background */
+        .markdown-content img:not(.loaded) {
+            background-color: #f5f5f5;
+        }
+
+        .markdown-content strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .question-heading {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            line-height: 1.5;
+            color: var(--color-text);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: var(--color-bg-secondary);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 8px;
+        }
+
+        /* Image row for side-by-side images */
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .image-row img {
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        /* Project overview cards grid */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .overview-card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .overview-card h3 {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 0.75rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .overview-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .overview-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .overview-card {
+                padding: 1rem;
+            }
+
+            .overview-card h3 {
+                font-size: 0.8rem;
+            }
+
+            .overview-card p {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .overview-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s var(--transition-smooth);
+        }
+
+        .footer a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-title {
+                display: none;
+            }
+
+            .hero-image {
+                height: 40vh;
+            }
+
+            .content-wrapper {
+                padding: 2rem 1.5rem;
+                margin-top: -40px;
+            }
+
+            .markdown-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .markdown-content h2 {
+                font-size: 1.25rem;
+            }
+
+            .project-info {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s var(--transition-smooth) forwards;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="back-link">← Back</a>
+            <span class="nav-title">Glasgow Mackintosh Tea Room – Tea Culture Promotion Design Project</span>
+            <div style="width: 60px;"></div>
+        </nav>
+    </header>
+
+    <div class="hero-image">
+        <img src="../images/tea-room-cover.png" alt="Tea Room Project Cover">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <article class="content-wrapper">
+        <div class="project-meta fade-in">
+            <span class="project-category">Product and UX Design</span>
+            <h1 class="project-title">Glasgow Mackintosh Tea Room – Tea Culture Promotion Design Project</h1>
+            <p style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 1.5rem;">—— centred on Ritual & Delivery · Health & Wellbeing</p>
+            <div class="project-tags">
+                <span class="project-tag">Service Design</span>
+                <span class="project-tag">Commercial Design</span>
+                <span class="project-tag">Product Design</span>
+            </div>
+
+            <div class="project-info">
+                <div class="info-item">
+                    <span class="info-label">Services</span>
+                    <span class="info-value">Service Design, Commercial Design, Product Design</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Duration</span>
+                    <span class="info-value">1 month (Team work)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Industry</span>
+                    <span class="info-value">Ritual Delivery, Health, Wellbeing</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Role</span>
+                    <span class="info-value">UI/UX Designer</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Type</span>
+                    <span class="info-value">Team Project</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="markdown-content fade-in">
+<h1>Challenge</h1>
+<p><strong>The Access Gap:</strong> We face the ethical constraint of designing for specific ASN needs without direct access to the students</p>
+<p><strong>The Reality Gap:</strong> Relying solely on secondary research creates a risk of bias, potentially leading to a product that fails in practice.</p>
+
+<div class="overview-cards">
+    <div class="overview-card">
+        <h3>WHO</h3>
+        <p>1. For Secondary School students (S3/S4)<br>2. ASN students</p>
+    </div>
+    <div class="overview-card">
+        <h3>WHY</h3>
+        <p>Demonstrate how the rituals of service can foster community care and mental wellbeing</p>
+    </div>
+    <div class="overview-card">
+        <h3>WHAT (The Output)</h3>
+        <p>A Digital Learning Resource that Reimagines the Scottish Afternoon Tea Through the specific lens of Health & Wellbeing and Ritual & Delivery.</p>
+    </div>
+    <div class="overview-card">
+        <h3>HOW</h3>
+        <p>Conduct empathetic desk-based research<br>Create multi-sensory, non-digital learning activities housed within a digital format</p>
+    </div>
+    <div class="overview-card">
+        <h3>WHEN</h3>
+        <p>An intensive 5-week design sprint</p>
+    </div>
+    <div class="overview-card">
+        <h3>WHERE</h3>
+        <p>Anchored in the "Living Heritage" site of MAW, treating the location not just as a museum, but as an active social enterprise.</p>
+    </div>
+</div>
+
+<h1>Research Context</h1>
+<p>This project responded to the brief "Innovation in Heritage: Future Careers in Scottish Hospitality", using Mackintosh at the Willow as a living heritage context rather than only a historical reference.</p>
+<p>Our research focused on the intersection of Ritual & Delivery and Health & Wellbeing. Instead of treating afternoon tea simply as food or tradition, we explored it as a structured social ritual made up of atmosphere, service, etiquette, sensory choices, timing, and shared care.</p>
+
+<h1>Research Constraints</h1>
+<p>Due to time and ethical constraints, we were unable to directly interview or test with secondary school students, including ASN learners. This created an access gap between the target users and the design team.</p>
+<p>To reduce assumptions, the research relied on brief analysis, desk research, site/context understanding, stakeholder input, peer discussion, and secondary insights around teenage wellbeing, inclusive learning, and sensory support needs.</p>
+
+<h1>Background Research</h1>
+<img src="./images/tea-room/image3.webp" alt="" loading="lazy">
+
+<h1>User Analysis</h1>
+<p>Teenagers in Scottish secondary schools (aged 15–16), including ASN students</p>
+<img src="./images/tea-room/image4.webp" alt="" loading="lazy">
+
+<h1>Key Research Insights</h1>
+<div class="overview-cards">
+    <div class="overview-card">
+        <h3>Ritual as Support</h3>
+        <p>Afternoon tea can be reframed as a structured wellbeing ritual rather than a passive heritage topic. Its repeated actions, pace, atmosphere, and shared etiquette can help create calm, care, and social connection.</p>
+    </div>
+    <div class="overview-card">
+        <h3>Learning Through Making</h3>
+        <p>Young learners are more likely to engage when heritage learning becomes participatory and sensory. A hands-on format can turn abstract cultural knowledge into something visible, touchable, and personally meaningful.</p>
+    </div>
+    <div class="overview-card">
+        <h3>Inclusive Participation</h3>
+        <p>For ASN learners, the experience needs to support clear structure, flexible participation, sensory awareness, and personal choice, rather than relying only on text-heavy or instruction-led learning.</p>
+    </div>
+</div>
+
+<h1>Problem Analysis and Definition</h1>
+<img src="./images/tea-room/image5.webp" alt="" loading="lazy">
+<p class="question-heading">How might we transform the tradition of Scottish afternoon tea into an inclusive, hands-on learning experience that helps young learners explore ritual, care, and wellbeing through making?</p>
+
+<h1>Opportunities</h1>
+<p>We identified and combined the ritual qualities of afternoon tea with elements of personal well-being, then broke them down into small, tangible, and achievable components. Afternoon tea rituals are essentially built from many delicate micro-actions and detail-based elements, such as:</p>
+<div class="image-row">
+    <img src="./images/tea-room/image6.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image7.webp" alt="" loading="lazy">
+</div>
+<p>These small yet refined elements can serve as actionable components that teenagers can complete on their own → turning what was once an inaccessible "ritual" into something tangible, shareable, customisable, and achievable.</p>
+<div class="image-row">
+    <img src="./images/tea-room/image8.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image9.webp" alt="" loading="lazy">
+</div>
+
+<h1>Key Development Areas for the Next Phase</h1>
+<img src="./images/tea-room/image10.webp" alt="" loading="lazy">
+
+<h1>Early Prototyping: From Clay Models to Tangible Ritual Objects</h1>
+<p>To test how the ritual of afternoon tea could be translated into physical learning tools, we created early clay prototypes of miniature objects. These low-fidelity models helped us explore scale, touch, symbolism, and how learners might physically arrange objects to construct their own ritual space.</p>
+<div class="image-row">
+    <img src="./images/tea-room/image11.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image12.webp" alt="" loading="lazy">
+</div>
+
+<h1>Before You Take a Sip</h1>
+<p>A portable, hands-on learning kit that guides students to create their own meaningful afternoon tea ritual.</p>
+<img src="./images/tea-room/image13.webp" alt="" loading="lazy">
+
+<h2>Concept: Tangible Rituals</h2>
+<p>By arranging miniature tableware, selecting sensory elements, and following guided reflection prompts, learners discover how ritual structure, intentional actions, and symbolic meanings can support wellbeing.</p>
+<img src="./images/tea-room/image14.webp" alt="" loading="lazy">
+
+<h2>Packaging as the First Ritual Touchpoint</h2>
+<p>The packaging was designed as the first moment of engagement with the toolkit. Its decorative patterns draw from Mackintosh-inspired visual language and the atmosphere of afternoon tea, helping students enter a calm, heritage-based ritual experience before opening the box.</p>
+<div class="image-row">
+    <img src="./images/tea-room/image15.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image16.webp" alt="" loading="lazy">
+</div>
+<div class="image-row">
+    <img src="./images/tea-room/image17.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image18.webp" alt="" loading="lazy">
+</div>
+
+<h2>Guidebook</h2>
+<p>Much like a symphony has distinct movements, afternoon tea follows a fixed rhythmic structure. The guidebook can help students understand this kind of structure.</p>
+<img src="./images/tea-room/image19.webp" alt="" loading="lazy">
+<p>This final chapter invites students to become architects of their own wellbeing. Following a visual guide, they physically construct the ritual space.</p>
+<img src="./images/tea-room/image20.webp" alt="" loading="lazy">
+
+<h1>Physical Prototype in Context</h1>
+<p>These final prototype images show how the toolkit works as a complete physical learning experience. The objects, guidebook, packaging, and ritual prompts come together to support hands-on exploration, allowing students to build, arrange, and reflect on their own afternoon tea ritual.</p>
+<div class="image-row">
+    <img src="./images/tea-room/image21.webp" alt="" loading="lazy">
+    <img src="./images/tea-room/image22.webp" alt="" loading="lazy">
+</div>
+
+<h1>Educational Value & Impact</h1>
+<img src="./images/tea-room/image23.webp" alt="" loading="lazy">
+
+<h1>Future Possibilities</h1>
+
+<h2>Co-Creation & Customization</h2>
+<p><strong>Concept:</strong> Introduce "Blank Canvas" miniatures (e.g., unpainted ceramic cups or clay scone kits) within the box.</p>
+<p><strong>Action:</strong> Allow students to paint or sculpt their own symbolic items to add to the three-tier stand.</p>
+<p><strong>Value:</strong> Deepens the sense of ownership and personal expression. The ritual becomes more powerful when they use tools they created themselves.</p>
+
+<h2>Digital Community: "The Ritual Recipe Exchange"</h2>
+<p><strong>Concept:</strong> Develop a student-led platform to share "Mood Recipes."</p>
+<p><strong>Action:</strong> Students can upload photos of their ritual setups and music choices for specific problems (e.g., "My Anti-Anxiety Setup for Maths Exams" or "The 'Monday Morning' Boost").</p>
+<p><strong>Value:</strong> Transforms individual self-care into peer-to-peer support, creating a library of coping strategies curated by students for students.</p>
+
+<h1>Stakeholders Map</h1>
+<img src="./images/tea-room/image24.webp" alt="" loading="lazy">
+        </div>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html">← Back to Home</a>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 0 var(--color-border)';
+            }
+        }, { passive: true });
+
+        // Progressive image loading with IntersectionObserver
+        const images = document.querySelectorAll('.markdown-content img');
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+
+                    // Create a new image to preload
+                    const preloadImg = new Image();
+                    preloadImg.src = img.src;
+
+                    preloadImg.onload = function() {
+                        img.classList.add('loaded');
+                    };
+
+                    // Fallback if already cached
+                    if (preloadImg.complete) {
+                        img.classList.add('loaded');
+                    }
+
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '100px 0px',
+            threshold: 0.1
+        });
+
+        images.forEach(img => {
+            // Skip hero image (already loaded)
+            if (!img.closest('.hero-image')) {
+                imageObserver.observe(img);
+            }
+        });
+
+        // Preload next few images for smoother scrolling
+        let currentImageIndex = 0;
+        const preloadNextImages = () => {
+            const contentImages = Array.from(images).filter(img => !img.closest('.hero-image'));
+            const preloadCount = 3; // Preload next 3 images
+
+            for (let i = currentImageIndex; i < Math.min(currentImageIndex + preloadCount, contentImages.length); i++) {
+                const img = contentImages[i];
+                if (!img.classList.contains('loaded')) {
+                    const preloadImg = new Image();
+                    preloadImg.src = img.src;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const images = document.querySelectorAll('.markdown-content img:not(.loaded)');
+
+            images.forEach((img, index) => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < windowHeight + 200) {
+                    currentImageIndex = index;
+                }
+            });
+
+            preloadNextImages();
+        }, { passive: true });
+    </script>
+</body>
+</html>
