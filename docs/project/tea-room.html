@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glasgow Mackintosh Tea Room – Tea Culture Promotion Design Project | Ziqing Yang</title>
     <meta name="description" content="Tea culture promotion design project centred on Ritual & Delivery · Health & Wellbeing">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,12 +67,22 @@
         }
 
         .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             font-family: var(--font-display);
             font-size: 1.25rem;
             font-weight: 500;
             color: var(--color-text);
             text-decoration: none;
             transition: opacity 0.3s var(--transition-smooth);
+        }
+
+        .nav-icon {
+            width: 1.8rem;
+            height: 1.8rem;
+            flex: 0 0 auto;
+            object-fit: contain;
         }
 
         .back-link:hover {
@@ -417,7 +429,7 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="../index.html" class="back-link">← Back</a>
+            <a href="../index.html" class="back-link"><img src="../images/site-icon.png" alt="" class="nav-icon" aria-hidden="true"><span>← Back</span></a>
             <span class="nav-title">Glasgow Mackintosh Tea Room – Tea Culture Promotion Design Project</span>
             <div style="width: 60px;"></div>
         </nav>

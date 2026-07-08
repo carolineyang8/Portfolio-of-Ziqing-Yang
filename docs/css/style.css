@@ -138,11 +138,21 @@ picture img {
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 500;
     letter-spacing: -0.02em;
     transition: opacity 0.3s var(--transition-smooth);
+}
+
+.logo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 auto;
+    object-fit: contain;
 }
 
 .logo:hover {
@@ -157,7 +167,7 @@ picture img {
 }
 
 .nav-links a {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -678,6 +688,15 @@ picture img {
 
     .nav-links {
         gap: 1.5rem;
+    }
+
+    .logo {
+        gap: 0.55rem;
+    }
+
+    .logo-icon {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .nav-links a {
