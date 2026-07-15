@@ -1,0 +1,94 @@
+.project-toc {
+    position: fixed;
+    top: 7rem;
+    left: max(2rem, calc((100vw - 1380px) / 2));
+    width: 220px;
+    max-height: calc(100vh - 9rem);
+    padding-right: 1rem;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.project-toc__label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.project-toc__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    list-style: none;
+}
+
+.project-toc__link {
+    display: block;
+    padding: 0.45rem 0 0.45rem 0.8rem;
+    border-left: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition: border-color 0.2s var(--transition-smooth), color 0.2s var(--transition-smooth), padding-left 0.2s var(--transition-smooth);
+}
+
+.project-toc__link:hover,
+.project-toc__link.is-active {
+    border-left-color: var(--color-accent);
+    color: var(--color-text);
+    padding-left: 1rem;
+}
+
+.markdown-content h1 {
+    scroll-margin-top: 6rem;
+}
+
+@media (max-width: 1420px) {
+    .project-toc {
+        position: sticky;
+        top: 4.8rem;
+        width: auto;
+        max-height: none;
+        margin: 0 0 2rem;
+        padding: 0 0 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .project-toc__label {
+        margin-bottom: 0.5rem;
+    }
+
+    .project-toc__list {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .project-toc__link {
+        min-width: max-content;
+        padding: 0.35rem 0;
+        border-left: 0;
+        border-bottom: 1px solid var(--color-border);
+        white-space: nowrap;
+    }
+
+    .project-toc__link:hover,
+    .project-toc__link.is-active {
+        padding-left: 0;
+        border-bottom-color: var(--color-accent);
+    }
+}
+
+@media (max-width: 768px) {
+    .project-toc {
+        top: 4.2rem;
+        margin-bottom: 1.5rem;
+    }
+}
