@@ -1,9 +1,10 @@
 .project-toc {
-    position: fixed;
+    position: sticky;
     top: 7rem;
-    left: max(2rem, calc((100vw - 1380px) / 2));
+    float: left;
     width: 220px;
     max-height: calc(100vh - 9rem);
+    margin-left: -270px;
     padding-right: 1rem;
     z-index: 100;
     overflow-y: auto;
@@ -52,6 +53,7 @@
     .project-toc {
         position: sticky;
         top: 4.8rem;
+        float: none;
         width: auto;
         max-height: none;
         margin: 0 0 2rem;
